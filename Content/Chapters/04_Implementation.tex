@@ -5,3 +5,23 @@
 
 \section{Related Work}
 \label{sec:related-work}
+Twitter, a popular microblogging service with over 255 million active monthly users\footnote{\url{http://about.twitter.com/company} \accessednote \label{aboutwitter}}, allows anyone to instantly post 140-characters text messages. Thereby, up to 500 million public Tweets are generated per day in more than 35 languages about nearly any imaginable topic\footref{aboutwitter}. By offering free API’s to access this huge amount of unstructured data, Twitter attracted many professionals to collect and analyze Tweets to gain valuable insights on anything from stock market to natural disasters (presented in chapter \ref{cha:use-cases}). The analysis of microblogging data has been shown to provide new and not otherwise attainable information and it is, therefore, an important resource for big social data analysis. There are various tools to collect, analyze and visualize certain aspects of Twitter data.
+
+\section{Technologies}
+\label{sec:technologies}
+Mining, storing, analyzing and visualizing terabytes of unstructured data requires optimized and new cutting edge technologies. 
+
+Since traditional relational \textbf{databases} cannot meet these requirements \cite{TwitterDataAnalytics2013}, new NoSQL databases\footnote{NoSQL ('Not Only SQL') represents a new type of data management technologies created to meet the new requirements to process, store and analyze Big Data.} had been invented, such as MongoDB\footnote{\url{http://www.mongodb.org} \accessednote }, Apache Cassandra\footnote{\url{http://cassandra.apache.org} \accessednote} and CouchDB\footnote{\url{http://couchdb.apache.org} \accessednote}, that makes it possible to store, manage and analyze the huge amount of unstructured data in real time. Further optimization can be achieved by using Apache Hadoop\footnote{\url{http://hadoop.apache.org} \accessednote} to distribute the data storage and processing across machine clusters.
+
+\textbf{Natural Language Processing} is an important part of the analysis of big social data. Toolkits such as Python NLTK\footnote{\url{http://nltk.org} \accessednote} and Apache OpenNLP\footnote{\url{http://opennlp.apache.org} \accessednote} offer a rich set of algorithm for tokenization, stemming, named entity recognition, stop word removal and more. 
+
+The Twitter Stream Reader is implemented with Python using the Twython\footnote{\url{http://twython.readthedocs.org} \accessednote} library to access the Twitter Streaming API\footnote{Push service to collect public Tweets in realtime.}. The streaming data from Twitter is filtered based on \todo{finish sentence!}. A Tweet contains a 140 character text message and various metadata such as the language, location, user information, number of retweets and favorites and more. 
+
+\todo{Check if following fits into our setup}
+The language used in Tweets is mostly informal and the correctness of grammar is often sacrificed to gain additional characters. Further, abbreviations and special characters (e.g. emoticons) are also frequently employed \cite[67]{TwitterDataAnalytics2013}. Therefore, each Tweet is preprocessed in the Data Analysis Module using common NLP text preparation techniques to remove these elements. In the first step, the text of a Tweet is lowercased and special characters, URLs as well as English stop words\footnote{Words that do not contain important significance or are extremely common (e.g. the, a, want).} get removed.
+
+\todo{Fit paragraph into text}
+In the next step, the preprocessed Tweet text alongside with the original Tweet text, creation timestamp and all metadata is stored into MongoDB, a popular NoSQL database that is used as the main data store for our implementation.
+
+\todo{Under Limitations sec?}
+For this case study, Twitter is used as the only data source. However, other social media sources for additional public social data could easily be integrated into the current data flow. This case study is limited to only collecting tweets in English language since NLP in English is more advanced, offers a proper comparison and is simpler to use. In addition, the Twitter Streaming API is restricted to 1\% of the total number of Tweets at any given moment\footnote{\url{http://dev.twitter.com/docs/faq} \accessednote}.
