@@ -18,6 +18,29 @@ Big social data analysis has grown into a serious business over the past several
 
 \section{Objectives}
 \label{sec:objectives}
+In the beginning of the project, we wanted to analyze Stack Overflow. Stack Overflow is one of the biggest Q\&A pages of the today’s web and the flagship of the Stack Exchange Network.
+Our goal was to get high-quality insights into trending topics of developers around the globe. 
+After identifying current hot topics people write about, we wanted to search Twitter messages for the same topics. As a result, we wanted to find out if it is possible to discover trends we identified on Stack Overflow also on Twitter. In the next step, we wanted to categorize and analyze detected intersection on both media platforms. The project was supposed to answer among other possible questions the following ones: 
+Is Twitter used to ask questions?
+Is there a chronological difference between the uprising of a trend on Stack Overflow and Twitter?
+Are there opinion leaders in one of the sources? [People who ask a lot of questions / tweet a lot about a topic]
+
+After a renewed validation of the project’s purpose we shifted the direction. We had the assumption that we would find only a few intersections between topics discussed on Stack Overflow and Twitter, if any. Additionally, Stack Overflow already offers quite sophisticated statistics about its data, including topics. These statistics make an own analysis redundant.
+
+As a consequence, we changed the project’s objective, which is depicted in the following.
+[Check and adapt the following paragraph depending on the real content of our project]
+The goal of the project is the early detection and prediction of arising trends on Twitter.
+We assume that it is possible to predict the spreading of future trends on Twitter based on the curves of trends in the past. 
+Therefor, we want to explore different metrics and dimensions, such as retweets, hashtag/topic occurrences, user groups and emotions.
+It helps to detect big headlines before they go viral and, therefore, it is very valuable in different areas such as stock market, brand awareness, political discussions and elections and the success of media (movies, music). 
+
+We suggest an architecture consisting of two systems for data collection. 
+The first system is used to monitor the entire Twitter stream and focused on detecting on trends that are in early stage. Furthermore, it uses topic modeling to identify topics/hashtags that are correlated to the same trend.
+These results are then forwarded to the second system. The second system utilizes this data for observing only those topics in detail until they are not relevant anymore. 
+
+In the next step, we plan to use (unsupervised) machine learning techniques to compare the early trends with previous trend curves to predict their further course.
+
+Additionally, we may compare the overall results with data from Google Trends to check for similarities.
 
 
 \section{Overview}
