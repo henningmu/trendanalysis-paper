@@ -10,6 +10,14 @@ Twitter, a popular microblogging service with over 255 million active monthly us
 
 The analysis of microblogging data has been shown to provide new and not otherwise attainable information and it is, therefore, an important resource for big social data analysis. There are various tools to collect, analyze and visualize certain aspects of Twitter data. The MapD tweetmap\footnote{\url{http://mapd.csail.mit.edu/tweetmap-desktop} \accessednote} enables users to analyze nearly 350 million historical geolocated Tweets from January 2011 to September 2013 in milliseconds and visualize the results on a map. Sentiment Viz is a web application that allows to track certain keywords to analyze the sentiment of corresponding Tweets in real-time and visualize the results using different techniques \cite{healy2014twittersentiment}. The Arizona State University developed the TweetTracker and TweetXplorer tools to track, analyze, visualize and understand the activity on Twitter. TweetTracker is \enquote{capable of monitoring and analyzing location and keyword specific Tweets with near-real-time trending, data reduction, historical review, and integrated data mining tools} \cite[1]{kumar2011tweettracker}, whereas TweetXplorer provides a comprehensive set of effective visualization techniques \cite{morstatter2013understanding}. Furthermore, other tools are specialized in specific use cases such as the weather sentiment prediction application\footnote{\url{http://www.sproutloop.com/prediction_demo} \accessednote}, for analyzing  the sentiment about the weather at a specific location, and trendsmap\footnote{\url{http://trendsmap.com} \accessednote}, for visualizing upcoming localized trends on a map.
 
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_timeseries_psnhack}
+  \caption[Christmas Network Outage Word Cloud]{Christmas Network Outage Word Cloud}
+  \label{fig:christmas-network-outage-word-cloud}
+  \vspace{-1.3em}
+\end{figure}
+
 Naaman et al. used twitter to \enquote{identify important dimensions according to which trends can be categorized, as well as the key distinguishing features of trends that can be derived from their associated messages} \cite{naaman2011characterizing}. They performed their analysis on previously collected dataset of 48 million tweets while we try to achieve results on a much smaller dataset and with live data instead of historic data. Zubiaga et al. focus on the classification problem by \enquote{introducing a typology of trending topics, and providing a method to immediately classify trending topics as soon as they  appear  on  the  homepage  of  Twitter} \cite{zubiaga2011classifications}. We however try to identify trends without knowing that Twitter declared them as trending.
 
 
