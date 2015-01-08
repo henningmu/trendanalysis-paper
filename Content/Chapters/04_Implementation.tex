@@ -5,18 +5,9 @@
 
 \section{Related Work}
 \label{sec:related-work}
-\todo[inline]{Not sure if this is best place for a twitter description, but the text is good}
 Twitter, a popular microblogging service with over 255 million active monthly users\footnote{\url{http://about.twitter.com/company} \accessednote \label{aboutwitter}}, allows anyone to instantly post 140-characters text messages. Thereby, up to 500 million public Tweets are generated per day in more than 35 languages about nearly any imaginable topic\footref{aboutwitter}. By offering free API’s to access this huge amount of unstructured data, Twitter attracted many professionals to collect and analyze Tweets to gain valuable insights on anything from stock market to natural disasters (presented in chapter \ref{cha:use-cases}). 
 
 The analysis of microblogging data has been shown to provide new and not otherwise attainable information and it is, therefore, an important resource for big social data analysis. There are various tools to collect, analyze and visualize certain aspects of Twitter data. The MapD tweetmap\footnote{\url{http://mapd.csail.mit.edu/tweetmap-desktop} \accessednote} enables users to analyze nearly 350 million historical geolocated Tweets from January 2011 to September 2013 in milliseconds and visualize the results on a map. Sentiment Viz is a web application that allows to track certain keywords to analyze the sentiment of corresponding Tweets in real-time and visualize the results using different techniques \cite{healy2014twittersentiment}. The Arizona State University developed the TweetTracker and TweetXplorer tools to track, analyze, visualize and understand the activity on Twitter. TweetTracker is \enquote{capable of monitoring and analyzing location and keyword specific Tweets with near-real-time trending, data reduction, historical review, and integrated data mining tools} \cite[1]{kumar2011tweettracker}, whereas TweetXplorer provides a comprehensive set of effective visualization techniques \cite{morstatter2013understanding}. Furthermore, other tools are specialized in specific use cases such as the weather sentiment prediction application\footnote{\url{http://www.sproutloop.com/prediction_demo} \accessednote}, for analyzing  the sentiment about the weather at a specific location, and trendsmap\footnote{\url{http://trendsmap.com} \accessednote}, for visualizing upcoming localized trends on a map.
-
-\begin{figure}[H]
-  \centering
-        \includegraphics[width=\textwidth]{final_timeseries_psnhack}
-  \caption[Christmas Network Outage Word Cloud]{Christmas Network Outage Word Cloud}
-  \label{fig:christmas-network-outage-word-cloud}
-  \vspace{-1.3em}
-\end{figure}
 
 Naaman et al. used twitter to \enquote{identify important dimensions according to which trends can be categorized, as well as the key distinguishing features of trends that can be derived from their associated messages} \cite{naaman2011characterizing}. They performed their analysis on previously collected dataset of 48 million tweets while we try to achieve results on a much smaller dataset and with live data instead of historic data. Zubiaga et al. focus on the classification problem by \enquote{introducing a typology of trending topics, and providing a method to immediately classify trending topics as soon as they  appear  on  the  homepage  of  Twitter} \cite{zubiaga2011classifications}. We however try to identify trends without knowing that Twitter declared them as trending.
 
@@ -51,13 +42,21 @@ A \textbf{bag of words model} describes a technique where documents are analysed
 \subsection{Sentiment Analysis}
 \label{subsec:sentiment-analysis}
 Sentiment Analysis is a widely used NLP technique to analyze social media data. Therefore, many companies, such as AlchemyAPI\footnote{\url{http://alchemyapi.com} \accessednote}, ViralHeat\footnote{\url{http://viralheat.com} \accessednote} and TextAlytics\footnote{\url{http://textalytics.com} \accessednote}, offer commercial web services to detect sentimental information of any text data by utilizing machine learning techniques. Several open-source machine learning toolkits, e.g. Weka\footnote{\url{http://cs.waikato.ac.nz/ml/weka} \accessednote} and Mallet\footnote{\url{http://mallet.cs.umass.edu} \accessednote}, offer similar algorithm that can be trained to classify and compute the corresponding sentiment. Further, these libraries are also suited for topic modeling, information extraction and pattern recognition on big social data. Apache UIMA\footnote{\url{http://uima.apache.org} \accessednote} and Gate\footnote{\url{http://gate.ac.uk} \accessednote} provide extensible frameworks to combine and manage these technologies for the analysis of unstructured information.
-\todo[inline]{Insert figure and reference it}
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_sentiment_theinterview}
+  \caption[Sentiment analysis for stolen movie \enquote{The Interview}]{Sentiment analysis for stolen movie \enquote{The Interview}}
+  \label{fig:sentiment-interview}
+  \vspace{-1.3em}
+\end{figure}
+
+Figure \ref{fig:sentiment-interview} shows the sentiment analysis for the comedy movie \enquote{The Interview}. The movie features North Korean dictator Kim Jong-un and has been stolen from Sony Pictures in an attack from the crew Guardians of Peace (GOP). Till today it is unknown who this group is but the Federal Bureau of Investigation (FBI) suspects North Korean hackers are responsible for the attack. \cite{guardian2014interview} The sentiment analysis shows the three clearly distinguishable sentiments \textit{negative}, \textit{neutral} and \textit{positive}. There are a lot of negative reactions to the movie itself but not about Sony Pictures putting it online for everyone to watch. About Sony's decision to put the movie online and only show it in selected cinemas was mostly reported with a neutral sentiment.
 
 
 \subsection{Topic Modelling}
 \label{subsec:topic-modelling}
-\todo[inline]{add correct citations}
-Topic modeling is a statistical machine learning model for automatic discovery of abstract topics occurring in a collection of documents (content entities). Moreover, it allocates the analyzed documents to the discovered topics and clusters the most common words (terms). \acf{LDA} is a common method of topic modeling introduced by Blei et al. [BNJ03]. The \ac{LDA} method assumes that each document contains a mixture of topics where each word attributes to one of these topics [BNJ03]. The requirements for executing \ac{LDA} for topic modelling are a collection of documents, a specified number of topics and specified number of iterations. A highly simplified process description of LDA is described below:
+Topic modeling is a statistical machine learning model for automatic discovery of abstract topics occurring in a collection of documents (content entities). Moreover, it allocates the analyzed documents to the discovered topics and clusters the most common words (terms). \acf{LDA} is a common method of topic modeling introduced by Blei et al. \cite{Blei03lda}. The \ac{LDA} method assumes that each document contains a mixture of topics where each word attributes to one of these topics \cite{Blei03lda}. The requirements for executing \ac{LDA} for topic modelling are a collection of documents, a specified number of topics and specified number of iterations. A highly simplified process description of LDA is described below:
 \begin{enumerate}
   \item{Go through every document and assign a random topic (from the specified number of topics) to each word occurrence}
   \item{Count up the number of assignments of each word occurrence for every topic (how many times for each topic does a word appear)}
@@ -75,8 +74,20 @@ Topic modeling is a statistical machine learning model for automatic discovery o
   \item{Repeat with step two for the specified number of iterations}
 \end{enumerate}
 When analyzing detected trends on twitter we utilize \ac{LDA} to find all topics related to hashtags. The documents needed for \ac{LDA} are in this case the collected tweets and the parameters topic count and iteration count are varied depending on the trend. Ramage et al. find in their research paper that the 140 characters of a tweet are sufficient as a document for \ac{LDA} \cite{ramage2010lda}.
-\todo[inline]{Insert figure and reference it}
 
+\begin{lstlisting}[caption={[Topic Model for stolen movie \enquote{The Interview}] Topic Model for stolen movie \enquote{The Interview}}, label={lst:topic-model-interview}, float=h]
+  theinterview (1109) jamesfrancotv (782) sethrogen (573) movie (308) interview (204) funny (182) hilarious (148) °\DNumber°
+
+  northkorea (253) sonyhack (140) korea (125) north (117) internet (75) sony (72) amp (57) °\DNumber°
+
+  theinterview (695) sonypictures (264) sony (234) movie (147) korea (121) north (111) interview (100) °\DNumber°
+
+  theinterview (223) aint (96) hate (76) cuz (58) jealous (52) anus (33) peanutbutter (26) °\DNumber°
+
+  theinterview (537) christmas (132) day (89) theaters (67) freedom (66) theater (65) showing (57) °\DNumber°
+\end{lstlisting}
+
+Listing \ref{lst:topic-model-interview} shows the topics which were modelled by using \ac{LDA} on all tweets related to the comedy \enquote{The Interview}. The results are based on nearly 5000 tweets, 5 topics and 1000 iterations. Interesting in this results is that every topic describes another aspect of the incident. The first topic covers probably recommendations for the movie itself while the second topic is about the hack of Sony Pictures by GOP. The third topic seems to be purely informational. The fourth topic references a hilarious scene from the movie which we do not want to spoiler in this paper. The last topic is about Sony's decision to stream the movie online and showing it in selected cinemas on christmas.
 
 \subsection{Visualization}
 \label{subsec:visualization}
@@ -85,8 +96,16 @@ To understand and interpret the results of this big social data analysis, we use
 \subsubsection{Time Series}
 \label{subsubsec:vis-time-series}
 The time series visualization is used to display the course of an event or a trend. It displays the dates in which the trend has been monitored on the horizontal axis against the count of tweets collected for that topic on the vertical axis. The time series evaluation are particularly good when it comes to detecting new trends. Most trending topics will not show up in previous data at all but as soon as they begin to trend they show as clear peaks in the times series graph.
-\todo[inline]{Insert figure and reference it}
-Figure XX shows a time series visualization of the hashtags \textit{XXX} and \textit{XXX}. There is an observable peak of both hashtags on XXXXXXXXXX which is very hard to spot when solely looking at the data without any visualization. The big advantage of the time series visualization over the other visualization techniques is that it considers the time. That allows us to see when a topic begins to trend.
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_timeseries_theinterview}
+  \caption[Time series for stolen movie \enquote{The Interview}]{Time series for stolen movie \enquote{The Interview}}
+  \label{fig:time-series-interview}
+  \vspace{-1.3em}
+\end{figure}
+
+Figure \ref{fig:time-series-interview} shows a time series visualization of the hashtags \textit{\#theinterview} and \textit{\#northkorea} and the user mention \textit{@SethRogen} all belonging to the trend of the stolen comedy movie \enquote{The Interview}. Seth Rogen is the main actor of the comedy. There is an observable peak for both hashtags and the user mention on 18\textsuperscript{th} of December on this Sony announced that they will not screen the movie as a reaction to the hackers' threat of terrorist attacks on cinemas showing the movie. On 24\textsuperscript{th} of December Sony decided to make the movie online available via stream. This decision is visible as a peak in the time series visualization as well. The third and last peak in the visualization is based on a live tweeting event from main actor Seth Rogen who tweeted his comments and stories from set while watching the movie. \cite{deadline2014interview}
 
 \subsubsection{Word Clouds}
 \label{subsubsec:vis-word-clouds}
@@ -94,18 +113,30 @@ The word cloud visualization highlights the most frequently occurring terms in t
 
 The current implementation uses all tweets related to a trend and transforms them into a word cloud. Therefore all tweets are read from the database and then the frequency of each word in the text is counted using wordfreq.js\footnote{\url{http://timdream.org/wordfreq} \accessednote}. Finally, every unique word and the associated frequency is forwarded to wordcloud2.js\footnote{\url{http://timdream.org/wordcloud2.js} \accessednote}, a JavaScript visualization library, to render the corresponding word cloud.
 
-\todo[inline]{Insert figure and reference it}
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_wordcloud_theinterview}
+  \caption[Word cloud for stolen movie \enquote{The Interview}]{Word cloud for stolen movie \enquote{The Interview}}
+  \label{fig:word-cloud-interview}
+  \vspace{-1.3em}
+\end{figure}
 
-An example word cloud is depicted in figure XXX. ABCDE and FGHIJK are the most common terms for the detected trend
+An example word cloud is depicted in figure \ref{fig:word-cloud-interview}. It shows the most common words for all tweets related to the comedy movie \enquote{The Interview} which was stolen from Sony Pictures in a hacking attack. The most frequent words were of course the movie title itself and the two main actors Seth Rogen and James Franco (his twitter user name is @JamesFrancoTV). Additionally Sony Pictures and North Korea are mentioned a lot. This example shows that a word cloud is a mighty tool to quickly analyze the most frequent words of a trend.
+
 
 \subsubsection{Geospatial Visualization}
 \label{subsubsection:vis-geospatial}
 Geospatial visualization helps to identify the location of current events and detect new events and trends that are likely to occur \cite{TwitterDataAnalytics2013}. Furthermore, it is used to gain insights into the prominent locations discussing a selected event \cite[64-66]{TwitterDataAnalytics2013}. As mentioned in section \ref{sec:setup}, the geospatial visualization is limited only to English and geolocated Tweets. All visualizations are build with CartoDB\footnote{\url{http://cartodb.com} \accessednote}, a cloud-computing platform that provides mapping and visualization solutions for geolocated data. 
 
-\todo[inline]{Insert figure and reference it}
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_geospatial_map_theinterview}
+  \caption[Geospatial analysis for stolen movie \enquote{The Interview}]{Geospatial analysis for stolen movie \enquote{The Interview}}
+  \label{fig:map-interview}
+  \vspace{-1.3em}
+\end{figure}
 
-Lorem ipsum figure XXX describes flow of topic around the usa with major impact in new york ....
-
+A map enhanced with geospatial data is depicted in figure \ref{fig:map-interview}. It displays all tweets related to the comedy movie \enquote{The Interview}. The tweets are distributed equally over the whole United States of America. There are visible hotspots in the biggest cities New York, Los Angeles and San Francisco. The middle west has less tweets visible on the map which may be caused by a lower population in this area.
 
 \section{Architecture}
 \label{sec:architecture}
