@@ -5,19 +5,40 @@
 
 \section{Big Data}
 \label{sec:big-data}
+The term \textit{Big Data} describes an enormous amount of data, which cannot be stored, managed or analyzed with conventional database tools \cite{web2011linkeddata}. Big Data can include different types of data, such as enterprise, machine-generated, sensor or social data \cite[3]{oraclebigdata}.
 
+In the last few years, the analysis of Big Data became an essential aspect for many companies. Big social data analysis enables those companies to get more information about their customers' sentiment, satisfaction or opinion by collecting and analyzing data from social media services \cite{oraclebigdata}.
+
+Big Data is typically distinguished into three data types: structured, unstructured or semi-structured data. \textbf{Structured data} covers information that is captured in a field within a file or database, whereas \textbf{unstructured data} covers information without a data model organization (\eg{} plain text, videos). For this reason, unstructured data is hard to process and to understand by machines. \textbf{Semi-structured data} refers to data without a formal structure like a database, but it contains tags to structure semantic elements \cite[2\psqq]{conf/semwiki/SintSSF09}.
+
+Many techniques have been developed to analyze this gigantic amount of data \cite[27]{McKinsey2011}. Some of these technologies are described later in this chapter.
 
 \section{Social Media}
 \label{sec:social-media}
+The term \textit{social media} belongs to web applications such as \enquote{social networks, blogs, multimedia content sharing sites and wikis} \cite{eu2013socialmedia}. Social networks such as Facebook, Twitter or Google+ are used by an increasing number of people. In September 2013, 73\% of online participants used at least one social networking site, of those 71\% were active on Facebook and about 19\% on Twitter \cite{pewresearchsocialmediafact}. Those social media applications enable people to connect with others as well as to publish content such as their interests, opinions, knowledge and ideas. During the past several years, user-generated-content has become more and more popular, which means, that the users participating more in content creation, rather than just content consumption \cite[1]{Agichtein:2008:FHC:1341531.1341557}.  That leads to an continuously increasing amount of unstructured social data and makes it impossible for humans to read through and analyze this immense amount of unstructured data. Therefore, advanced data mining and analysis techniques are necessary. 
 
+The traditional approach to gain insights into society, human beings and social relations required \enquote{questioning a large number of people about their feelings} \cite[1]{flaounas2012big}. In contrast, social media applications can provide those valuable information about the public \enquote{due to the fact that people use them to express their feelings} \cite[1]{flaounas2012big}.
 
 \section{Machine Learning}
 \label{sec:machine-learning}
+\textit{Machine learning} describes methods that enable computer systems automatically to learn from empirical data \cite{Domingos:2012:FUT:2347736.2347755,McKinsey2011}. Machine learning methods usually focus on the prediction and classification of information, based on training data that contains truthful information. There are a wide variety of applications for machine learning on big social data such as natural language processing, topic detection, text classification and sentiment analysis.
 
+One of the most common approaches of machine learning is the classifier system. A classifier system can be described with a spam filter, which labels an email as \enquote{spam} or \enquote{not spam}. Input for such a system might be a \enquote{Boolean vector $x=(x_{1},...,x_{j},...,x_{d})$, where $x_{j}=1$} if the word appears in the dictionary. Otherwise $x_{j}=0$. \enquote{The learner now inputs a training set of examples $(x_{i}, y_{i})$, where $x=(x_{1},...,x_{i,d})$ is an observed input and $y_{i}$ is the corresponding output} (classifier). Afterwards, the learner checks whether the classifier \enquote{produces the correct output for future examples} \cite[1]{Domingos:2012:FUT:2347736.2347755}.
 
 \section{Data Mining}
 \label{sec:data-mining}
+\textit{Data mining} is the process of finding valuable insights from large datasets. Therefore, data mining techniques try to extract meaningful patterns and associations in datasets by utilizing artificial intelligence, machine learning or statistical methods \cite{han2012mining}. However, compared to machine learning, it is more focused on the discovery of unknown information instead of the prediction. In general, data mining is used as a synonym for the process of discovering knowledge from data and usually includes the following iterative phases: data cleaning, data integration, data selection, data transforming, pattern detection and knowledge representation \cite[6\psqq]{han2012mining}.
 
+\section{Natural Language Processing}
+\label{sec:nlp}
+\textit{Natural Language Processing (NLP)} is \enquote{a set of techniques [..] to analyze human (natural) language} \cite[29]{McKinsey2011}. Those techniques are often based on machine learning or statistical methods that enable computer systems to derive meaning from natural language. Therefore, NLP methods need to analyze and understand the syntax, semantics and the context (pragmatics) of a sentence \cite{Linckels:2011:ESU:1995306}.
+
+Common application areas of NLP include stemming\footnote{Process for reducing words to their stem or root form.}, named entity  recognition\footnote{Method to recognize well-known entities (e.g. person, location) in text.} and sentiment analysis (explained in chapter \ref{sec:sentimentanalysistheory}).
 
 \section{Trends}
 \label{sec:trends}
+\textit{Trend detection} methods are used to detect emerging topics or trends by using Natural Language Processing methods. The keyword frequency approach is a popular method to discover trends in a big amount of unstructured text data \cite{journals/smarthome/Kim+13}. In the majority of cases, the input data is preprocessed to remove meaningless characters and words, as well as to prevent duplicated terms. Therefore, the text data is lowercased to prevent ambiguity and complexity caused by case-sensitiveness. Furthermore, a stop word removal process filters out extremely common words to speed up the processing and emphasize the important terms. In addition, stemming methods are used to merge and reduce words to a common base. After the preprocessing of the input data, the remaining words are ordered by their frequency of occurrence and the top $k$ words stand out as trending keywords \cite[213\psq]{journals/smarthome/Kim+13}.
+
+Many social networks use hashtags to categorize social content, represent a topic or event and help users to discover certain content. A hashtag consists of \enquote{a sequence of non whitespace characters preceded by the hash character} \cites[644]{conf/wsdm/TsurR12}[1427]{conf/wsdm/TsurR12,conf/asunam/ZhangWL13} (\eg{} \#GERUSA or \#WorldCup). Hashtags are well suited for trend detection by measuring the number of uses in a time interval \cite[1427]{conf/asunam/ZhangWL13}.
+
+Using Trend Detection methods on social media content is an effective way to discover frequently used keywords and to show emerging topics in real-time \cite{journals/smarthome/Kim+13,TwitterDataAnalytics2013}.
