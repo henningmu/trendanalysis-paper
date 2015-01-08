@@ -97,34 +97,6 @@
 % Choose quotes depending on language
 \usepackage[babel=true, german=quotes]{csquotes}
 
-% Settings for Source code listings
-\usepackage{listings}
-\renewcommand{\lstlistlistingname}{List of Listings}
-\renewcommand{\lstlistingname}{Listing}
-\lstset{
-	backgroundcolor=\color{base3},
-	captionpos=b,
-	escapechar=!,
-	extendedchars=true,
-	numberfirstline=false,
-	xleftmargin=4ex,
-	numberbychapter=false
-	basicstyle=\color{base00}\scriptsize\ttfamily,
-	showstringspaces=false,
-	showspaces=false,
-	numbers=left,
-	numberstyle=\tiny,
-	numbersep=10pt,
-	breaklines=true,
-	showtabs=false,
-	captionpos=b,
-	frame=l,
-	framerule=4pt,
-	rulecolor=\color{base2},
-	aboveskip = 1em,
-	belowskip = 0em,
-}
-
 % Use BibTeX / LaTeX Symbol
 \usepackage{texnames}
 
@@ -217,3 +189,53 @@
 \clubpenalty = 10000
 \widowpenalty = 10000
 \displaywidowpenalty = 10000
+
+% Source-Code-Listings
+\usepackage{listings}
+\renewcommand*{\lstlistlistingname}{List of Listings}
+%\renewcommand*{\lstlistingname}{Sourcecode}
+% Source-Code-Listings additional
+\usepackage[usenames,dvipsnames,table]{xcolor}
+%\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{lightlightgray}{rgb}{.98,.98,.98}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+%\definecolor{darkgreen}{rgb}{0, 0.5, 0}
+\definecolor{background}{RGB}{250,250,250}
+\definecolor{darkgreen}{HTML}{669900}
+\definecolor{ligtblue}{HTML}{33B5E5}
+\definecolor{comment}{rgb}{0.12, 0.38, 0.18 } 
+\definecolor{string}{rgb}{0.06, 0.10, 0.98}
+\definecolor{keyword}{RGB}{133, 19, 119}  
+\definecolor{base3}{RGB}{253,246,235} % 253,246,227
+\definecolor{blue}{RGB}{38,139,210}
+
+% \newcommand{\listingLine}{\rule[2pt]{380pt}{0.5pt}}
+\newcommand*\DNumber{\addtocounter{lstnumber}{-1}}
+
+
+\lstset{
+	backgroundcolor=\color{base3},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numberblanklines=false,
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	%frame=trBL,
+	framerule=4pt,
+	frame=leftline,
+	rulecolor=\color{blue},
+	aboveskip = 1em,
+	belowskip = 0em,
+	captionpos=b,	% place caption at the bottom of the listing
+	%escapeinside={\%*}{*)}, % if you want to add LaTeX within your code
+	numberfirstline=false,
+	xleftmargin=3.5ex,
+	escapechar=°
+}
