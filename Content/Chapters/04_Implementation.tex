@@ -5,7 +5,9 @@
 
 \section{Related Work}
 \label{sec:related-work}
+\todo[inline]{Not sure if this is best place for a twitter description, but the text is good}
 Twitter, a popular microblogging service with over 255 million active monthly users\footnote{\url{http://about.twitter.com/company} \accessednote \label{aboutwitter}}, allows anyone to instantly post 140-characters text messages. Thereby, up to 500 million public Tweets are generated per day in more than 35 languages about nearly any imaginable topic\footref{aboutwitter}. By offering free API’s to access this huge amount of unstructured data, Twitter attracted many professionals to collect and analyze Tweets to gain valuable insights on anything from stock market to natural disasters (presented in chapter \ref{cha:use-cases}). The analysis of microblogging data has been shown to provide new and not otherwise attainable information and it is, therefore, an important resource for big social data analysis. There are various tools to collect, analyze and visualize certain aspects of Twitter data.
+
 
 \section{Technologies}
 \label{sec:technologies}
@@ -13,8 +15,51 @@ Mining, storing, analyzing and visualizing terabytes of unstructured data requir
 
 Since traditional relational \textbf{databases} cannot meet these requirements \cite{TwitterDataAnalytics2013}, new NoSQL databases\footnote{NoSQL ('Not Only SQL') represents a new type of data management technologies created to meet the new requirements to process, store and analyze Big Data.} had been invented, such as MongoDB\footnote{\url{http://www.mongodb.org} \accessednote }, Apache Cassandra\footnote{\url{http://cassandra.apache.org} \accessednote} and CouchDB\footnote{\url{http://couchdb.apache.org} \accessednote}, that makes it possible to store, manage and analyze the huge amount of unstructured data in real time. Further optimization can be achieved by using Apache Hadoop\footnote{\url{http://hadoop.apache.org} \accessednote} to distribute the data storage and processing across machine clusters.
 
-\textbf{Natural Language Processing} is an important part of the analysis of big social data. Toolkits such as Python NLTK\footnote{\url{http://nltk.org} \accessednote} and Apache OpenNLP\footnote{\url{http://opennlp.apache.org} \accessednote} offer a rich set of algorithm for tokenization, stemming, named entity recognition, stop word removal and more. 
+\subsection{Data Preparation}
+\label{subsec:data-preparation}
+\textbf{Natural Language Processing} is an important part of the analysis of big social data. Toolkits such as Python NLTK\footnote{\url{http://nltk.org} \accessednote} and Apache OpenNLP\footnote{\url{http://opennlp.apache.org} \accessednote} offer a rich set of algorithm for tokenization, stemming, named entity recognition, stop word removal and more.
 
+\textbf{Stop word removal} describes the process of removing the most common words out of a text. Words like \textit{to}, \textit{the} or \textit{a} have little influence in any analysis and are most of the time omitted to avoid unnecessary indices and clean the dataset. Normally so called \textit{stop lists} are defined containing all words which should be removed before the analysis \cite[27]{manning2008introduction}. However in some cases it can be dangerous or simply wrong to remove too many stop words or to remove stop words at all. For example when searching for some \enquote{well known pieces of verse consist entirely of words that are commonly on stop lists (To be or not to be, Let It Be, I don’t want to be, ... )} \cite[27]{manning2008introduction}.
+
+\textbf{Stemming} is used to bring related terms and words to a common base form. This is often needed when texts are analysed and words in different forms are used like \textit{am}, \textit{are} or \textit{is} a stemming algorithm would then find the common base form as \textit{be}. There exist different approaches for stemming like just cutting off the ends of words and hoping for a good result. More advanced approaches try to find the correct base \enquote{with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only} \cite[32]{manning2008introduction}.
+
+A \textbf{bag of words model} describes a technique where documents are analysed by counting and weighting their words. Each word can be a so called bag. The technique can be further enhanced to include weighting of words, for example stop words should have less weight. Another approach is to use a stemming algorithm on each word in order reduce the amount of bags. A bag of words model is much simpler than applying topic modelling algorithms described in the next section and therefore more convenient in some cases. \cite[117]{manning2008introduction} 
+
+\subsection{Topic Modelling}
+\label{subsec:topic-modelling}
+Topic modeling is a statistical machine learning model for automatic discovery of abstract topics occurring in a collection of documents (content entities). Moreover, it allocates the analyzed documents to the discovered topics and clusters the most common words (terms). \acf{LDA} is a common method of topic modeling introduced by Blei et al. [BNJ03]. The \ac{LDA} method assumes that each document contains a mixture of topics where each word attributes to one of these topics [BNJ03]. A highly simplified process description of \ac{LDA} is described in appendix D.
+\todo[inline]{add correct citations}
+\todo[inline]{reformulate to adapt to text}
+A highly simplified process description of LDA is described below:
+Requirement: collection of documents, specified number of topics, specified number of iterations
+\begin{enumerate}
+  \item{Go through every document and assign a random topic (from the specified number of topics) to each word occurrence}
+  \item{Count up the number of assignments of each word occurrence for every topic (how many times for each topic does a word appear)}
+  \item{Resemble the topic assignment for one selected word occurrence in a document:}
+  \begin{itemize}
+    \item{Delete the assignment of the selected word occurrence}
+    \item{Compute conditional distribution over all possible topic assignment of the selected word:}
+    \begin{itemize}
+      \item{A = number of assigned word occurrence categorized by their topics for the document}
+      \item{B = number of times each topic appeared in the document}
+      \item{C = number of assignments of each word for every topic}
+      \item{(A+B)*C = topic with highest value is new topic assignment for the selected word occurrence}
+    \end{itemize}
+  \end{itemize}
+  \item{Repeat with step two for the specified number of iterations}
+\end{enumerate}
+
+
+\subsection{Vizualisation}
+\label{subsec:visualisation}
+Time Series 
+Wordcloud Visualisation
+Geospatial Analysis
+
+
+
+\section{Architecture}
+\label{sec:architecture}
 The Twitter Stream Reader is implemented with Python using the Twython\footnote{\url{http://twython.readthedocs.org} \accessednote} library to access the Twitter Streaming API\footnote{Push service to collect public Tweets in realtime.}. The streaming data from Twitter is filtered based on \todo{finish sentence!}. A Tweet contains a 140 character text message and various metadata such as the language, location, user information, number of retweets and favorites and more. 
 
 \todo{Check if following fits into our setup}
