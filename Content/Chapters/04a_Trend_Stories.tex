@@ -2,6 +2,73 @@
 \chapter{Trend Stories}
 \label{cha:trend-stories}
 
+\section{Happy New Year}
+\label{sec:happy-new-year}
+Our analysis period covered the time of Christmas and New Year. Figure \ref{fig:christmas-new-year-time-series} shows the behavior of both trends.  
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=25em]{final_timeseries_newyear}
+  \caption[Christmas \& New Year Time Series]{Christmas \& New Year Time Series}
+  \label{fig:christmas-new-year-time-series}
+  \vspace{-1.3em}
+\end{figure}
+
+In the following, we give more insights to the tweets related to the turn of the year due to its rapid increase and the fact that the peak outnumbers the peak during Christmas.. Following hashtags were discovered as being the main used ones: 
+\begin{multicols}{3}
+\begin{itemize}[label={}]
+  \item \#newyear
+  \item \#newyearseve
+  \item \#nye
+  \item \#hny
+  \item \#goodbye2014
+  \item \#bye2014
+  \item \#nye2015
+  \item \#midnight
+  \item \#ihatenewyears
+  \item \#newyearseveproblems
+  \item \#newyear2015
+  \item \#happynewyear
+  \item \#hello2015
+  \item \#welcome2015
+  \item \#hi2015
+  \item \#newyears
+\end{itemize}
+\fixspacing
+\end{multicols}
+
+The word cloud depicted in figure \ref{fig:new-year-word-cloud} illustrates the hashtags and stresses the fact that the identified hashtags are the core ones.
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=25em]{final_wordcloud_newyear}
+  \caption[New Year Word Cloud]{New Year Word Cloud}
+  \label{fig:new-year-word-cloud}
+  \vspace{-1.3em}
+\end{figure}
+
+We chose two different points of time to create the heat maps displayed in figure \ref{fig:new-year-heat-map}.
+The left heat map shows the west coast at midnight. The map shows clearly the increase of tweets in the region, especially in Los Angeles. The second map shows the same behavior a few hours before in New York.
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=25em]{final_geospatial_newyear}
+  \caption[New Year Heat Map]{New Year Heat Map}
+  \label{fig:new-year-heat-map}
+  \vspace{-1.3em}
+\end{figure}
+
+Besides analyzing the locations of the tweets, we analyzed the thoughts of the American people regarding the New Year. More precisely, we focused on the sentiment of the tweets. The results are shown in figure \ref{fig:new-year-sentiment}. Fortunately, the majority of tweets contains positive or at least neutral opinions. Only a small number has a negative attitude.
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=35em]{final_sentiment_newyear}
+  \caption[New Year Sentiment]{New Year Sentiment}
+  \label{fig:new-year-sentiment}
+  \vspace{-1.3em}
+\end{figure}
+
+
 \section{Air Asia Flight Tragedy}
 \label{sec:air-asia-flight-tragedy}
 \todo{addTOPSY BILD}
@@ -89,6 +156,7 @@ In the end, the popular german internet entrepreneur Kim Dotcom paid Lizard Squa
     \item @MEGAprivacy
     \item @PlayStation
 \end{itemize}
+  \fixspacing
 \end{multicols}
 
 We fetched all tweets containing at least one of the listed hashtags or user mentions and created a word cloud. The resulting word cloud consists of the words used in the fetched tweets.\todo{link to word cloud image!}
