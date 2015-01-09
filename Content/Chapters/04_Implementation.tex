@@ -140,10 +140,12 @@ A map enhanced with geospatial data is depicted in figure \ref{fig:map-interview
 
 \section{Architecture}
 \label{sec:architecture}
-The Twitter Stream Reader is implemented with Python using the Twython\footnote{\url{http://twython.readthedocs.org} \accessednote} library to access the Twitter Streaming API\footnote{Push service to collect public Tweets in realtime.}. The streaming data from Twitter is filtered based on \todo{finish sentence!}. A Tweet contains a 140 character text message and various metadata such as the language, location, user information, number of retweets and favorites and more. 
+The architecture consists of three main parts. The Twitter Stream Reader, the Data Collector and the Trend Analysis Module.
 
-\todo{Check if following fits into our setup}
+The Twitter Stream Reader is implemented with Python using the Twython\footnote{\url{http://twython.readthedocs.org} \accessednote} library to access the Twitter Streaming API\footnote{Push service to collect public Tweets in realtime.}. The streaming data from Twitter is filtered based on the english language and the location is limited to the United States. A Tweet contains a 140 character text message and various metadata such as the used hashtags, user mentions, location, user information, number of retweets and favorites and more. Each tweet is lowercased to be able to ignore case when searching for tweets or hashtags. After that the preprocessed Tweet text alongside with the original Tweet text, creation timestamp and all metadata is stored into MongoDB, a popular NoSQL database that is used as the main data store for our implementation.
+
+
 The language used in Tweets is mostly informal and the correctness of grammar is often sacrificed to gain additional characters. Further, abbreviations and special characters (e.g. emoticons) are also frequently employed \cite[67]{TwitterDataAnalytics2013}. Therefore, each Tweet is preprocessed in the Data Analysis Module using common NLP text preparation techniques to remove these elements. In the first step, the text of a Tweet is lowercased and special characters, URLs as well as English stop words\footnote{Words that do not contain important significance or are extremely common (e.g. the, a, want).} get removed.
 
 \todo{Fit paragraph into text}
-In the next step, the preprocessed Tweet text alongside with the original Tweet text, creation timestamp and all metadata is stored into MongoDB, a popular NoSQL database that is used as the main data store for our implementation.
+
