@@ -8,7 +8,7 @@ Our analysis period covered the time of Christmas and New Year. Figure \ref{fig:
 
 \begin{figure}[H]
   \centering
-        \includegraphics[width=25em]{final_timeseries_newyear}
+        \includegraphics[width=\textwidth]{final_timeseries_newyear}
   \caption[Christmas \& New Year Time Series]{Christmas \& New Year Time Series}
   \label{fig:christmas-new-year-time-series}
   \vspace{-1.3em}
@@ -41,7 +41,7 @@ The word cloud depicted in figure \ref{fig:new-year-word-cloud} illustrates the 
 
 \begin{figure}[H]
   \centering
-        \includegraphics[width=25em]{final_wordcloud_newyear}
+        \includegraphics[width=\textwidth]{final_wordcloud_newyear}
   \caption[New Year Word Cloud]{New Year Word Cloud}
   \label{fig:new-year-word-cloud}
   \vspace{-1.3em}
@@ -52,7 +52,7 @@ The left heat map shows the west coast at midnight. The map shows clearly the in
 
 \begin{figure}[H]
   \centering
-        \includegraphics[width=25em]{final_geospatial_newyear}
+        \includegraphics[width=\textwidth]{final_geospatial_newyear}
   \caption[New Year Heat Map]{New Year Heat Map}
   \label{fig:new-year-heat-map}
   \vspace{-1.3em}
@@ -62,7 +62,7 @@ Besides analyzing the locations of the tweets, we analyzed the thoughts of the A
 
 \begin{figure}[H]
   \centering
-        \includegraphics[width=35em]{final_sentiment_newyear}
+        \includegraphics[width=\textwidth]{final_sentiment_newyear}
   \caption[New Year Sentiment]{New Year Sentiment}
   \label{fig:new-year-sentiment}
   \vspace{-1.3em}
@@ -71,15 +71,23 @@ Besides analyzing the locations of the tweets, we analyzed the thoughts of the A
 
 \section{Air Asia Flight Tragedy}
 \label{sec:air-asia-flight-tragedy}
-\todo{addTOPSY BILD}
-
 On 28th of december a terrible tragedy hit the news: a plane from the Air Asia carrier (QZ8501) crashed into the java sea between Indonesia and Singapore. On board of the flight were 162 people on their way from Surabaya in Indonesia to Changi Airport Singapore. It was around 06:12 local time when the pilot contacted air traffic control to request a change in flight altitude. The pilot wanted to  climb from 9.500 metres up to 11.500 metres in order to prevent being caught by the storm clouds which are typical for that area. Air traffic control gave the permission to do so a few minutes later but could not reach the plane anymore.\cite{bbc2014flight}
 
 Most of the families and relatives of the passengers are still in a deep grief since only 40 victims have been found by now. Experts assume that most passengers are still strapped to their seats in the missing main body of the airplane. As today no survivor has been found and the search is still being continued.\cite{bbc2014air}
 
 When first hearing from the awful tragedy many people thought of the flight 370 from Malaysia Airlines (MH370) which got lost on march 8th. On board of the flight were 239 people including passengers and crew. The search for the plane or its black box have been unsuccessful until today.\cite{nbc2014by}
 
-As shocking this news it we were able to identify an uprise of related tweets on twitter. People were using the following hashtags to discuss this news or to express griefs and sympathy with the families and relatives:
+As shocking this news is, we were able to identify an uprise of related tweets on twitter. The number of tweets about this topic are shown in figure \ref{fig:air-asia-time-series}.
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_timeseries_airasia}
+  \caption[Air Asia Time Series]{Air Asia Time Series}
+  \label{fig:air-asia-time-series}
+  \vspace{-1.3em}
+\end{figure}
+
+People were using the following hashtags to discuss this news or to express griefs and sympathy with the families and relatives:
 
 \begin{multicols}{2}
 \begin{itemize}[label={}]
@@ -92,18 +100,18 @@ As shocking this news it we were able to identify an uprise of related tweets on
 \end{itemize}
 \end{multicols}
 
-As mentioned earlier many people connected the crash of Air Asia flight 8501 with the disappearance of the Malaysia Air flight 370 that is why both flight numbers are trending topics. \todo{link to image word cloud air asia!}
+As mentioned earlier many people connected the crash of Air Asia flight 8501 with the disappearance of the Malaysia Air flight 370 that is why both flight numbers are trending topics.
 
 \begin{figure}[H]
   \centering
-        \includegraphics[width=25em]{WordCloud_2_AirAsia}
+        \includegraphics[width=\textwidth]{final_wordcloud_airasia}
   \caption[Air Asia Flight Tragedy Word Cloud]{Air Asia Flight Tragedy}
-  \label{fig:air-asia-flight-tragedy}
+  \label{fig:air-asia-flight-tragedy-word-cloud}
   \vspace{-1.3em}
 \end{figure}
 
-The word cloud above depicts the most commonly used words in tweets about the plane crash. A hypothesis based on the wordcloud is that the tweets have two different subjects. One subject is news and tweets are there to inform others about the tragedy and the other subject is emotional and shows condolence to families of the victims.
-We extracted all hashtags from our dataset and used LDA for topic modelling in order to further analyze our hypothesis.\todo{link to listing!}
+The word cloud in figure \ref{fig:air-asia-flight-tragedy-word-cloud} depicts the most commonly used words in tweets about the plane crash. A hypothesis based on the wordcloud is that the tweets have two different subjects. One subject is news and tweets are there to inform others about the tragedy and the other subject is emotional and shows condolence to families of the victims.
+We extracted all hashtags from our dataset and used LDA for topic modeling in order to further analyze our hypothesis. These topics are presented in listing \ref{lst:topic-model-air-asia}.
 
 \begin{lstlisting}[caption={[Topic Model for Air Asia Flight Tragedy] Topic Model for Air Asia Flight Tragedy}, label={lst:topic-model-air-asia}, float=h]
 	airasia (139) missing (76) flight (55) air (39) indonesia (37) singapore (33) asia (31) °\DNumber°
@@ -125,16 +133,34 @@ We extracted all hashtags from our dataset and used LDA for topic modelling in o
 	raaf (8) butterworth (8) china (8) australia (5) russia (5) trndnl (5) trending (5)
 \end{lstlisting}
 
-
 We used LDA to model nine different topics showing the 7 most relevant words of each topic. There is an observable difference between reporting tweets (like topic 0, 1, 4 and 7) and emotional tweets (like topic 2 and 6). Topics 3 and 8 stand out from the other, topic 3 is about the famous news network CNN which was one of the first to bring coverage about the crashed plane. Topic 8 on the other hand is about RAAF Butterworth airport in Malaysia, this airport is used by australia and others to coordinate the search for the missing wreckage of the airplane.
 This shows that our initial hypothesis is true. There are two different subjects tweeting about the airplane crash of flight QZ8501.
 
+In figure \ref{fig:air-asia-sentiment} the results of sentiment analysis of Air Asia related tweets is shown. The analysis categorized tweets as being negative that contained words condemning the year. As positive such tweets were categorized that contained words of compassion, hope and love. 
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_sentiment_airasia}
+  \caption[Air Asia Sentiment]{Air Asia Sentiment}
+  \label{fig:air-asia-sentiment}
+  \vspace{-1.3em}
+\end{figure}
 
 \section{Christmas Network Outage}
 \label{sec:christmas-network-outage}
 On the 24th of December in 2014, hackers started to attack the Playstation Network and the Microsoft Xbox Live Network. The DDoS attacks brought the networks down for several days. The gamer community was infuriated not to be able to play games during this period of time.\cite{wool2014sony}
 After a few days, a hacker group called Lizard Squad claimed credit for the attack.
-In the end, the popular german internet entrepreneur Kim Dotcom paid Lizard Squad with vouchers of his web platform Mega \cite{Dotcom2014}. In return, Lizard Squad stopped the attacks letting the gamers play again. Twitter was used by the companies Microsoft and Sony, the gamers, the attackers and Dotcom for discussion, asking for support and negotiating. After the network recovered, Sony announced to give discounts to PSN users. The involved persons and instances and events are reflected in the following list of hashtags and user mentions that were used to tag the related tweets:
+In the end, the popular german internet entrepreneur Kim Dotcom paid Lizard Squad with vouchers of his web platform Mega \cite{Dotcom2014}. In return, Lizard Squad stopped the attacks letting the gamers play again. Twitter was used by the companies Microsoft and Sony, the gamers, the attackers and Dotcom for discussion, asking for support and negotiating. After the network recovered, Sony announced to give discounts to PSN users. Figure \ref{fig:christmas-network-outage-time-series} shows how the Twitter activity regarding this topic increased rapidly during the period of attacks. 
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_timeseries_psnhack}
+  \caption[Christmas Network Outage Time Series]{Christmas Network Outage Time Series}
+  \label{fig:christmas-network-outage-time-series}
+  \vspace{-1.3em}
+\end{figure}
+
+The involved persons and instances and events are reflected in the following list of hashtags and user mentions that were used to tag the related tweets:
 
 \begin{multicols}{3}
 \begin{itemize}[label={}]
@@ -159,11 +185,11 @@ In the end, the popular german internet entrepreneur Kim Dotcom paid Lizard Squa
   \fixspacing
 \end{multicols}
 
-We fetched all tweets containing at least one of the listed hashtags or user mentions and created a word cloud. The resulting word cloud consists of the words used in the fetched tweets.\todo{link to word cloud image!}
+We fetched all tweets containing at least one of the listed hashtags or user mentions and created a word cloud, depicted in figure \ref{fig:christmas-network-outage-word-cloud}. The resulting word cloud consists of the words used in the fetched tweets.
 
 \begin{figure}[H]
   \centering
-        \includegraphics[width=25em]{WordCloud_2_PSNHack}
+        \includegraphics[width=\textwidth]{final_wordcloud_psnhack}
   \caption[Christmas Network Outage Word Cloud]{Christmas Network Outage Word Cloud}
   \label{fig:christmas-network-outage-word-cloud}
   \vspace{-1.3em}
@@ -172,7 +198,7 @@ We fetched all tweets containing at least one of the listed hashtags or user men
 The words ‘askplaystation’, ‘playstation’, ‘xbox’, ‘xboxsupport’, ‘psn’ form the core of the cloud.
 
 In the next step, we wanted to find out which of the words in the word cloud are used together most of the time. Therefore, we performed topic modeling on the queried tweets by using LDA.
-The identified topics are displayed in the following:
+The identified topics are displayed in listing \ref{lst:topic-model-network}.
 
 \begin{lstlisting}[caption={[Topic Model for Christmas Network Outage] Topic Model for Christmas Network Outage}, label={lst:topic-model-network}, float=h]
 	xbox (101) playstation (50) watch (44) movie (32) fuckcrucifix (31) north (29) korea (27) interview (27) °\DNumber°
@@ -199,7 +225,6 @@ The identified topics are displayed in the following:
 The words that formed the core of the cloud are also dominating the detected topics. Furthermore, the detected topics reflect the real events in a very good way.
 
 Topic 1 covers words indicating a discussion about a connection between the DDoS attack during Christmas and a previous hack against Sony. The earlier attack happened in the end of November, 2014 concerning the movie ‘The Interview’.\cite{bbc2014the}
-\todo{Maybe explain a few more details}
 
 The second topic is about the hack affecting the Xbox Live Network. Obviously, a lot of people tweeted to Microsoft's support.
 Topic 8 on is similar to topic 2, however, this time the words are concerning Playstation.
@@ -212,3 +237,13 @@ Topic 5 covers words of tweets that are to or about Lizard Squad. The words indi
 Topic 3, 6 contain words about the financial impact of such a hack and the claim for redemption for the lost hours of being able to use the networks.
 
 Interestingly, topic 9 contains the word ‘Halo’, which is a game series developed by Microsoft. In another attack in December 2014, parts of the source code of the newest game of the series were stolen. Either the twitter community discussed a possible relation between the two hacks or they were upset not being able to play the current version of the game.\cite{griffin2014unreleased}
+
+Figure \ref{fig:network-outage-sentiment} displays the sentiment of the user community regarding the gaming consoles and their hacks. Obviously, some people were really upset. Interestingly, the anger was directed against the companies and not against the hacker group. Some people, however, were thankful for the past year and back up the companies.
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{final_sentiment_psnhack}
+  \caption[Network Outage Sentiment]{Network Outage Sentiment}
+  \label{fig:network-outage-sentiment}
+  \vspace{-1.3em}
+\end{figure}
