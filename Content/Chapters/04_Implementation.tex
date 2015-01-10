@@ -9,26 +9,6 @@ The analysis of microblogging data has been shown to provide new and not otherwi
 
 Moreover, Naaman et al. used twitter to \enquote{identify important dimensions according to which trends can be categorized, as well as the key distinguishing features of trends that can be derived from their associated messages} \cite{naaman2011characterizing}. They performed their analysis on previously a collected dataset of 48 million tweets. In contrast, our projects aims to achieve results on a smaller dataset and based on real-time data instead of historical data. Zubiaga et al. focus on the classification problem by \enquote{introducing a typology of trending topics, and providing a method to immediately classify trending topics as soon as they appear on the homepage of Twitter} \cite{zubiaga2011classifications}.
 
-\section{Architecture}
-\label{sec:architecture}
-
-\begin{figure}[H]
-  \centering
-        \includegraphics[width=\textwidth]{trend_detection_architecture}
-  \caption[Trend Detection \& Analysis Dataflow Architecture]{Trend Detection \& Analysis Dataflow Architecture}
-  \label{fig:christmas-new-year-time-series}
-  \vspace{-1.3em}
-\end{figure}
-
-
-The architecture consists of three main parts. The Twitter Stream Reader, the Data Collector and the Trend Analysis Module.
-
-The Twitter Stream Reader is implemented with Python using the Twython\footnote{\url{http://twython.readthedocs.org} \accessednote} library to access the Twitter Streaming API\footnote{Push service to collect public Tweets in realtime.}. The streaming data from Twitter is filtered based on the english language and the location is limited to the United States. A Tweet contains a 140 character text message and various metadata such as the used hashtags, user mentions, location, user information, number of retweets and favorites and more. Each tweet is lowercased to be able to ignore case when searching for tweets or hashtags. After that the preprocessed Tweet text alongside with the original Tweet text, creation timestamp and all metadata is stored into MongoDB, a popular NoSQL database that is used as the main data store for our implementation.
-
-The language used in Tweets is mostly informal and the correctness of grammar is often sacrificed to gain additional characters. Further, abbreviations and special characters (e.g. emoticons) are also frequently employed \cite[67]{TwitterDataAnalytics2013}. Therefore, each Tweet is preprocessed in the Data Analysis Module using common NLP text preparation techniques to remove these elements. In the first step, the text of a Tweet is lowercased and special characters, URLs as well as English stop words\footnote{Words that do not contain important significance or are extremely common (e.g. the, a, want).} get removed.
-
-\todo{Fit paragraph into text}
-
 \section{Limitations}
 \label{sec:setup}
 For this case study, Twitter is used as the only data source. However, other social media sources for additional public social data could easily be integrated into the current data flow. This case study is limited to only collecting tweets in English language since NLP in English is more advanced, offers a proper comparison and is simpler to use. In addition, the Twitter Streaming API is restricted to 1\% of the total amount of tweets at any given moment\footnote{\url{http://dev.twitter.com/docs/faq} \accessednote}. In addition, we restricted our dataset only on geo-tagged tweets from the United States to enable a more advanced geospatial analysis, to concentrate on more unified trends from US and to prevent spam content.
@@ -127,3 +107,24 @@ Geospatial visualization helps to identify the location of current events and de
 \end{figure}
 
 A map enhanced with geospatial data is shown in figure \ref{fig:map-interview}. It displays tweets related to the comedy movie \enquote{The Interview}. The tweets are distributed equally over the whole United States of America. There are visible hotspots in the biggest cities New York, Los Angeles and San Francisco. The middle west has less tweets visible on the map which may be caused by a lower population in this area.
+
+\section{Architecture}
+\label{sec:architecture}
+
+\begin{figure}[H]
+  \centering
+        \includegraphics[width=\textwidth]{trend_detection_architecture}
+  \caption[Trend Detection \& Analysis Dataflow Architecture]{Trend Detection \& Analysis Dataflow Architecture}
+  \label{fig:twitter-trend-analysis-architecture}
+\end{figure}
+
+
+The implementation of our Twitter trend analysis tool, as presented in this paper, is separated into three main components: the Early Trend Detector, the Trend Analyzer and visualization tools. Thereby, the Early Trend Detector and the Trend Analyzer run in parallel on two different servers. Figure \ref{fig:twitter-trend-analysis-architecture} illustrates the architecture, implemented technologies and the data flow of our Twitter trend analysis tool.
+
+The Early Trend Detector as well as the Trend Analyzer independently collect data from Twitter. Thereby, the collection of tweets from the Twitter Streaming API\footnote{Push service to collect public Tweets in real time.} is implemented with Python using Twython\footnote{\url{http://twython.readthedocs.org} \accessednote}. A Tweet contains a 140 character text message and various metadata such as the language, location, user information, number of retweets and favorites and more. The language used in Tweets is mostly informal and the correctness of grammar are often sacrificed to gain additional characters. Further, abbreviations and special characters (e.g. Emoticons) are also frequently employed \cite[67]{TwitterDataAnalytics2013}. We decided to lowercase the tweet text and hashtags to prevent ambiguity and complexity caused by case-sensitiveness. 
+
+The main task of the \textbf{Early Trend Detector} is the early detection of upcoming Twitter trends. Therefore, this component streams data from Twitter filtered by English language and a bounding box on USA. These tweets are stored with an additional creation timestamp and all metadata from Twitter into MongoDB, a popular NoSQL database. In parallel, the Early Trend Detector also creates bag-of-words for hashtags and user mentions from incoming tweets and, additionally, calculates several statistics every twenty minutes such as average \& total occurrences, usage growth, participating users, retweet count and more. Based on these statistics, an anomaly detection process will be started every two hours to identify a list of about 10 unique hashtags and mentions with the highest trend potential. In the next step, one (or more) of those potential trends are selected and a list of correlated hashtags \& mentions is generated by querying and counting other hashtags \& mentions used in combination with the selected one. Finally, this list of hashtags and mentions related to a potential trend is forwarded to the Trend Analyzer component.
+
+The \textbf{Trend Analyzer} aims to further monitor, observe and analyze the potential trend for additional insights. Therefore, this component streams data from Twitter filtered by English language and the list of hashtags and mentions related to the potential trend. To simplify the analysis task, each tweet is preprocessed using common NLP text preparation techniques. In the first step, the text of a tweet is lower-cased and special characters, URLs as well as English stop words get removed. The Tweet text is further simplified by using tokenizing and text stemming techniques. In the next step, the preprocessed Tweet text alongside with the original tweet text, creation timestamp and all metadata is stored in a separate MongoDB database. After the preprocessing, the sentiment (positive, neutral or negative) of every tweet is determined by using the sentiment classifier from MetaMind\footnote{\url{https://www.metamind.io} \accessednote}. Moreover, we utilize the topic modeling algorithm LDA from Mallet\footnote{\url{http://mallet.cs.umass.edu} \accessednote} to discover topics (word correlations) from the collected dataset of tweets related to the selected trend. 
+
+To further analyze, understand and interpret our dataset for detected trends, we integrated a variety of visualization techniques that helps to get valuable insights about certain aspects (described in section \ref{subsec:visualization}). 
