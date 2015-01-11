@@ -11,7 +11,7 @@ Moreover, Naaman et al. used Twitter to \enquote{identify important dimensions a
 
 \section{Limitations}
 \label{sec:setup}
-For this case study, Twitter is used as the only data source. However, other social media sources for additional public social data could easily be integrated into the current data flow. This case study is limited to only collect tweets in English language since NLP in English is more advanced, offers a proper comparison and is simpler to use \todo{Dafür eine Quelle?}. In addition, the Twitter Streaming API is restricted to 1\% of the total amount of tweets at any given moment\footnote{\url{http://dev.twitter.com/docs/faq} \accessednote}. In addition, we restricted our dataset only on geo-tagged tweets from the United States to enable a more advanced geospatial analysis, to concentrate on more unified trends from US and to prevent spam content \todo{Das mit dem weniger Spam und geospatial data erläutern?}.
+For this case study, Twitter is used as the only data source. However, other social media sources for additional public social data could easily be integrated into the current data flow. This case study is limited to only collect tweets in English language since NLP in English is more advanced, offers a proper comparison and is simpler to use. In addition, the Twitter Streaming API is restricted to to a small fraction of the total volume of tweets at any given moment\footnote{\url{https://dev.twitter.com/faq} \accessednote}. In addition, we restricted our dataset only on geo-tagged tweets from the United States to enable a more advanced geospatial analysis, to concentrate on more unified trends from US and to prevent spam content\footnote{We assume that most spam content on Twitter is not tagged with location information.}.
 
 \section{Analysis Methods}
 \label{sec:analysis-methods}
@@ -23,7 +23,7 @@ For this case study, Twitter is used as the only data source. However, other soc
 
 \textbf{Stemming} is used to bring related terms and words to a common base form. This is often needed when texts are analyzed and words in different forms are used like \textit{am}, \textit{are} or \textit{is} a stemming algorithm would then find the common base form as \textit{be} \cite[32]{manning2008introduction}. Different approaches for stemming exist, like just cutting off the ends of words and hoping for a good result. More advanced approaches try to find the correct base \enquote{with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only} \cite[32]{manning2008introduction}.
 
-A \textbf{bag of words model} describes a technique that analyses documents by counting and weighting their words. Each word can be a so called bag. The technique can be further enhanced to include weighting of words, for example stop words should have less weight. Another approach is to use a stemming algorithm on each word in order reduce the amount of bags \cite[117]{manning2008introduction}.
+A \textbf{bag of words model} describes a technique to analyze documents by counting and weighting their words. Each word can be a so called bag. The technique can be further enhanced to include weighting of words, for example stop words should have less weight. Another approach is to use a stemming algorithm on each word in order reduce the amount of bags \cite[117]{manning2008introduction}.
 
 
 \subsection{Sentiment Analysis}
